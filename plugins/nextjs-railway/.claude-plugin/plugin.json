@@ -1,0 +1,7 @@
+{
+  "name": "nextjs-railway",
+  "version": "0.1.0",
+  "description": "Take a non-developer from an idea to a live website: create a Next.js project, build it, and put it online on Railway (never Vercel), plus databases and env vars. macOS only for now.",
+  "author": { "name": "Peachvon" },
+  "keywords": ["nextjs", "railway", "deploy", "no-code", "beginner"]
+}

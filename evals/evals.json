@@ -1,0 +1,46 @@
+{
+  "skill_name": "nextjs-railway",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "deploy เว็บนี้ขึ้นให้หน่อย",
+      "expected_output": "Fixes start script to bind 0.0.0.0:$PORT, builds locally, creates Railway project (no existing one), deploys with railway up, generates domain, verifies with curl. No Vercel.",
+      "files": ["fixtures/fresh-app"],
+      "assertions": [
+        "Deploys to Railway, not Vercel (no vercel commands, no vercel.json)",
+        "start script binds 0.0.0.0 and $PORT",
+        "Runs npm run build locally before deploying",
+        "Checks for existing Railway project (railway list/status) before railway init",
+        "Uses railway up to deploy (no GitHub remote)",
+        "Generates a domain (railway domain)",
+        "Verifies the live URL (curl / deployment status)"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "ช่วยเตรียมโปรเจกต์นี้ให้พร้อมขึ้น production หน่อย มีอะไรต้องแก้บ้าง",
+      "expected_output": "Recognises Railway as target, flags deprecated railway.json and plans railway config migrate --apply, keeps healthcheck, notes git-push deploy path. No Vercel.",
+      "files": ["fixtures/legacy-config"],
+      "assertions": [
+        "Does not suggest or configure Vercel",
+        "Flags railway.json as deprecated and plans railway config migrate",
+        "Does not hand-write railway.ts with invented API (uses CLI to generate)",
+        "Recognises deploys happen via git push (service connected to GitHub) rather than railway up",
+        "Runs npm run build locally"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "อยากเก็บคะแนนผู้เล่นไว้ใน database ต่อ Postgres ให้หน่อย แล้วใส่ env ให้เรียบร้อย ยังไม่ต้องเขียนโค้ดเกมนะ แค่ต่อ database กับ env ให้พร้อม",
+      "expected_output": "railway add --database postgres in same project, DATABASE_URL set as reference variable ${{Postgres.DATABASE_URL}}, warns about private network at build time. No Vercel/Neon.",
+      "files": ["fixtures/legacy-config"],
+      "assertions": [
+        "Adds Postgres inside Railway (railway add --database postgres), not Neon/Vercel/Supabase",
+        "Sets DATABASE_URL on the app as a reference variable ${{Postgres.DATABASE_URL}}",
+        "Uses correct railway variable syntax for CLI 5.59",
+        "Mentions private network hostname not available at build time",
+        "Does not write game code (respects scope)"
+      ]
+    }
+  ]
+}

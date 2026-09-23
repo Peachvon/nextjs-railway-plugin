@@ -1,0 +1,14 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "peachvon-plugins",
+  "description": "Plugins สำหรับสร้างเว็บ Next.js และเอาขึ้น Railway โดยไม่ต้องเป็น developer",
+  "owner": { "name": "Peachvon" },
+  "plugins": [
+    {
+      "name": "nextjs-railway",
+      "description": "สร้างเว็บ Next.js จากไอเดีย แล้วเอาขึ้น Railway จนได้ลิงก์จริง สำหรับคนที่ไม่ใช่ developer (macOS)",
+      "source": "./plugins/nextjs-railway",
+      "category": "development"
+    }
+  ]
+}
